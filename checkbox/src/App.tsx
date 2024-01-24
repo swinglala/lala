@@ -1,11 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import ListForm from './components/ListForm';
+import { todoData } from './consts/todoList';
 
 function App() {
   return (
     <div>
-      <header></header>
+      <header className='p-5 flex items-start justify-center text-[40px]'>U&I List</header>
+      <div>
+        <ListForm
+        list={todoData}
+        />
+      </div>
       
 
 
