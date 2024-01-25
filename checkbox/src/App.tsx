@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Routes,Route,useNavigate } from 'react-router-dom';
 import './App.css';
 import ListForm from './components/ListForm';
 import { TodoItem, TodoItemRequest } from './consts/todoList';
 import AddEvent from './components/AddEvent';
 
 function App() {
+  const navigate =useNavigate( );
 
   const [todoData, setTodoData] = useState<TodoItem[]>(() => {
     const storedData = localStorage.getItem("todoData");
@@ -34,9 +36,25 @@ function App() {
     setTodoData(todoData.map(todo => todo.id === id ? updatedTodo : todo));
   };
 
+  const todoList = todoData.filter((item) => item.progress === "TODO");
+  const doneList = todoData.filter((item) => item.progress === "DONE");
+
+
   return (
     <div className='flex flex-col items-center justify-center'>
-      <header className='p-5 flex items-start justify-center text-[40px]'>U&I List</header>
+      <header >
+          <div className='p-5 flex items-start justify-center text-[40px]'> U&I List </div>
+          <div className='flex flex-row items-center justify-center gap-5 text-white w-screen h-[40px] bg-slate-300'>
+            <div onClick={()=> navigate("/") }>모두</div>
+            <div> / </div>
+            <div onClick={()=> navigate("/todo") }>앞으로</div>
+            <div> / </div>
+            <div onClick={()=> navigate("/done") }>추억</div>
+          </div>
+      </header>
+
+      <Routes>
+    <Route path="/" element={
       <div className=''>
         <ListForm
         list={todoData}
@@ -44,6 +62,18 @@ function App() {
         onUpdate={updateTodo}
         />
       </div>
+       }/> 
+    <Route path="/todo" element={
+            <ListForm list={todoList}
+            handleDelete={handleDelete}
+            onUpdate={updateTodo} />
+          } />  
+   <Route path="/done" element={
+            <ListForm list={doneList}
+            handleDelete={handleDelete}
+            onUpdate={updateTodo} />
+          } />        
+       </Routes>
       <div>
       <AddEvent onAdd={handleAddTodo} />
       </div>
