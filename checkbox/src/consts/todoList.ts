@@ -4,6 +4,12 @@ export interface TodoItem {
     id : number ;
     progress: Progress;
     title: string;
+    completeDate?: string | null;
+    }
+
+export interface TodoItemRequest {
+    title: string;
+    completeDate?: string | null;
     }
 
 export const todoData: TodoItem[] = [
