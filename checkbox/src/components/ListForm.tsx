@@ -10,6 +10,18 @@ type Props = {
 };
 
 export default function ListForm({ list, onUpdate, handleDelete }: Props) {
+  const [editingDate, setEditingDate] = useState<number | null>(null);
+  const [newDate, setNewDate] = useState<string>('');
+
+  const handleDateEdit = (id: number, date: string) => {
+    const itemToUpdate = list.find(item => item.id === id);
+    if (itemToUpdate) {
+      onUpdate(id, { ...itemToUpdate, completeDate: date });
+    }
+    setEditingDate(null);
+  };
+
+
   const handleButtonClick = (index: number) => {
     const newTodo: TodoItem = {
       ...list[index],
@@ -32,7 +44,21 @@ export default function ListForm({ list, onUpdate, handleDelete }: Props) {
       {item.progress === "DONE" ? <TiHeart color="red" style={{ fontSize: '24px' }} /> : <TiHeartOutline style={{ fontSize: '24px' }} />}
     </button>
     <div className='flex items-center w-fit p-2'>
-      {item.completeDate && <span>{item.completeDate}</span>}
+    {item.completeDate && (
+              <>
+                <span>{item.completeDate}</span>
+                {editingDate !== item.id && (
+                  <button onClick={() => { setEditingDate(item.id); setNewDate(item.completeDate || ''); }}
+                  className='bg-slate-200'>Edit</button>
+                )}
+                {editingDate === item.id && (
+                  <div>
+                    <input type="date" value={newDate} onChange={(e) => setNewDate(e.target.value)} />
+                    <button onClick={() => handleDateEdit(item.id, newDate)}>check</button>
+                  </div>
+                )}
+              </>
+            )}
     </div>
               <button 
               className='flex w-10 h-10 items-center justify-center text-slate-500 opacity-30' 
