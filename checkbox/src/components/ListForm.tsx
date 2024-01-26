@@ -46,16 +46,15 @@ export default function ListForm({ list, onUpdate, handleDelete }: Props) {
     <div className='flex items-center w-fit p-2'>
     {item.completeDate && (
               <>
-                <span>{item.completeDate}</span>
-                {editingDate !== item.id && (
-                  <button onClick={() => { setEditingDate(item.id); setNewDate(item.completeDate || ''); }}
-                  className='bg-slate-200'>Edit</button>
-                )}
-                {editingDate === item.id && (
+                {editingDate === item.id ? (
                   <div>
                     <input type="date" value={newDate} onChange={(e) => setNewDate(e.target.value)} />
-                    <button onClick={() => handleDateEdit(item.id, newDate)}>check</button>
+                    <button onClick={() => handleDateEdit(item.id, newDate)}>확인</button>
                   </div>
+                ) : (
+                  <span onClick={() => { setEditingDate(item.id); setNewDate(item.completeDate || ''); }}>
+                    {item.completeDate}
+                  </span>
                 )}
               </>
             )}
