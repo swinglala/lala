@@ -45,7 +45,8 @@ function App() {
       <header >
           <div className='p-5 flex items-start justify-center text-[40px]'> U&I List </div>
           <div className='flex flex-row items-center justify-center gap-5 text-white w-screen h-[40px] bg-slate-300'>
-            <div onClick={()=> navigate("/") }>모두</div>
+            <div className='navItem'
+            onClick={()=> navigate("/") }>모두</div>
             <div> / </div>
             <div onClick={()=> navigate("/todo") }>앞으로</div>
             <div> / </div>

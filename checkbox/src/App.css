@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.navItem {
+  cursor: pointer; /* 마우스 오버 시 포인터 모양 변경 */
+  transition: color 0.3s ease; /* 색상 변화에 애니메이션 효과 적용 */
+}
+
+/* 마우스 오버 시 스타일 */
+.navItem:hover {
+  color: #4A90E2; /* 이 부분은 원하는 색상으로 변경 가능 */
+  text-decoration: underline; /* 밑줄 효과 */
+}
