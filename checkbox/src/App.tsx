@@ -41,16 +41,18 @@ function App() {
 
 
   return (
-    <div className='flex flex-col items-center justify-center'>
+    <div className='w-screen h-screen flex flex-col items-center justfy-start bg-[#FFF6F6]'>
       <header >
-          <div className='p-5 flex items-start justify-center text-[40px]'> U&I List </div>
-          <div className='flex flex-row items-center justify-center gap-5 text-white w-screen h-[40px] bg-slate-300'>
+          <div className='p-5 flex items-start justify-center text-[40px] '> U&I List </div>
+          <div className='flex flex-row items-center justify-center gap-5 text-white w-screen h-[40px] bg-[#F875AA]'>
             <div className='navItem'
-            onClick={()=> navigate("/") }>모두</div>
+            onClick={()=> navigate("/") }>All</div>
             <div> / </div>
-            <div onClick={()=> navigate("/todo") }>앞으로</div>
+            <div className='navItem' 
+            onClick={()=> navigate("/todo") }>of</div>
             <div> / </div>
-            <div onClick={()=> navigate("/done") }>추억</div>
+            <div className='navItem' 
+            onClick={()=> navigate("/done") }>Memories</div>
           </div>
       </header>
 

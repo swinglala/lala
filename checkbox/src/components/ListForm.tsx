@@ -36,12 +36,12 @@ export default function ListForm({ list, onUpdate, handleDelete }: Props) {
     <div >
       <div className='flex flex-col p-5 gap-2' >
         {list.map((item, index) => (
-          <div key={index} className='flex flex-row w-[350px] items-center justify-between bg-pink-100  rounded-sm'>
-            <div className='flex w-fit h-[50px] items-center justify-start p-2 font-bold'>{item.title}</div>
+          <div key={index} className='flex flex-row w-[350px] items-center justify-between bg-[#FFDFDF]  rounded-lg'>
+            <div className='flex w-fit h-[50px] items-center justify-start p-3 font-bold'>{item.title}</div>
             <div className='flex items-center justify-center gap-2'>
              
             <button onClick={() => handleButtonClick(index)} className='flex w-10 h-10 items-center justify-center'>
-      {item.progress === "DONE" ? <TiHeart color="red" style={{ fontSize: '24px' }} /> : <TiHeartOutline style={{ fontSize: '24px' }} />}
+      {item.progress === "DONE" ? <TiHeart color="#F875AA" style={{ fontSize: '24px' }} /> : <TiHeartOutline style={{ fontSize: '24px' }} />}
     </button>
     <div className='flex items-center w-fit p-2'>
     {item.completeDate && (
